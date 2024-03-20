@@ -5,8 +5,6 @@ import os
 
 imgCr = fr.load_image_file("../resources/images/img.jpg")
 imgCr = cv2.cvtColor(imgCr, cv2.COLOR_BGR2RGB)
-imgDemo = fr.load_image_file("../resources/images/img_1.jpg")
-imgDemo = cv2.cvtColor(imgDemo, cv2.COLOR_BGR2RGB)
 
 faceLoc = fr.face_locations(imgCr)[0]
 print(faceLoc)
