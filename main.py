@@ -44,6 +44,39 @@ def markAttendance(name):
             print(f"{name} {dt_string}")
             f.writelines(f'\n{name},{dt_string}')
 
+class TestFaceRecognition(unittest.TestCase):
+    def test_imageEncodings(self):
+        mock_encoding = np.random.rand(128) # Generate a random encoding of length 128
+        face_recognition.face_encodings = MagicMock(return_value=[mock_encoding])
+
+        images = [np.zeros((100, 100, 3), dtype=np.uint8) for _ in range(3)]
+        encodings = imageEncodings(images)
+
+        self.assertEqual(len(encodings), 3)
+        for encoding in encodings:
+            self.assertEqual(len(encoding), 128)
+
+    def test_markAttendence(self):
+        def test_mark_attendance(self):
+            tmp_file = 'test_attendance.csv'git gitgit
+            with open(tmp_file, 'w') as f:
+                f.write('Alp Arselan, 01/01/2024 12:00:00')
+
+            markAttendence('Mehmet Mustafa', tmp_file)
+            with open(tmp_file, 'r') as f:
+                lines = f.readlines()
+                self.assertEqual(len(lines), 2)
+                self.assertIn('Mehmet Mustafa', lines[1])
+
+            markAttendence('Alp Arselan', tmp_file)
+            with open(tmp_file, 'r') as f:
+                lines = f.readlines()
+                self.assertEqual(len(lines), 2)
+            os.remove(tmp_file)
+
+''' if __name__ == '__main__':
+    unittest.main()'''
+
 encodeListKnown = findEncodings(images)
 print("Encoding Complete")
 print("Starting OpenCV...")
